@@ -1,0 +1,6 @@
+C:\Users\王晓洁\source\repos\bbbbb\bbbbb\obj\Debug\bbbbb.csprojResolveAssemblyReference.cache
+C:\Users\王晓洁\source\repos\bbbbb\bbbbb\obj\Debug\bbbbb.csproj.CoreCompileInputs.cache
+C:\Users\王晓洁\source\repos\bbbbb\bbbbb\bin\Debug\bbbbb.dll
+C:\Users\王晓洁\source\repos\bbbbb\bbbbb\bin\Debug\bbbbb.pdb
+C:\Users\王晓洁\source\repos\bbbbb\bbbbb\obj\Debug\bbbbb.dll
+C:\Users\王晓洁\source\repos\bbbbb\bbbbb\obj\Debug\bbbbb.pdb

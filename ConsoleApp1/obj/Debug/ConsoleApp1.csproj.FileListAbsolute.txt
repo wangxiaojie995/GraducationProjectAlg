@@ -1,0 +1,9 @@
+C:\Users\王晓洁\source\repos\bbbbb\ConsoleApp1\bin\Debug\ConsoleApp1.exe.config
+C:\Users\王晓洁\source\repos\bbbbb\ConsoleApp1\bin\Debug\ConsoleApp1.exe
+C:\Users\王晓洁\source\repos\bbbbb\ConsoleApp1\bin\Debug\ConsoleApp1.pdb
+C:\Users\王晓洁\source\repos\bbbbb\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.CoreCompileInputs.cache
+C:\Users\王晓洁\source\repos\bbbbb\ConsoleApp1\obj\Debug\ConsoleApp1.exe
+C:\Users\王晓洁\source\repos\bbbbb\ConsoleApp1\obj\Debug\ConsoleApp1.pdb
+C:\Users\王晓洁\source\repos\bbbbb\ConsoleApp1\bin\Debug\bbbbb.dll
+C:\Users\王晓洁\source\repos\bbbbb\ConsoleApp1\bin\Debug\bbbbb.pdb
+C:\Users\王晓洁\source\repos\bbbbb\ConsoleApp1\obj\Debug\ConsoleApp1.csprojResolveAssemblyReference.cache
