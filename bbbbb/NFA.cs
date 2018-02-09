@@ -40,7 +40,7 @@ namespace bbbbb
                 Arc arc = new Arc(fa2.startVertex, TRANSFER_CHARACTER.TRANSFER_CHARACTER_EPSILON);
                 fa1.endVertex.AddArc(arc);
                 fa2.startVertex = null;
-                fa1.endVertex = null;
+                fa1.endVertex = fa2.endVertex;
                 fa1.headVerList.AddRange(fa2.headVerList);
                 return fa1;
             }
@@ -49,7 +49,7 @@ namespace bbbbb
                 Vertex newStart = new Vertex();
                 Vertex newEnd = new Vertex();
                 Arc arc1 = new Arc(fa1.startVertex, TRANSFER_CHARACTER.TRANSFER_CHARACTER_EPSILON);
-                Arc arc2 = new Arc(fa1.startVertex, TRANSFER_CHARACTER.TRANSFER_CHARACTER_EPSILON);
+                Arc arc2 = new Arc(fa2.startVertex, TRANSFER_CHARACTER.TRANSFER_CHARACTER_EPSILON);
                 Arc arc3 = new Arc(newEnd, TRANSFER_CHARACTER.TRANSFER_CHARACTER_EPSILON);
                 Arc arc4 = new Arc(newEnd, TRANSFER_CHARACTER.TRANSFER_CHARACTER_EPSILON);
                 newStart.AddArc(arc1);
@@ -119,8 +119,8 @@ namespace bbbbb
     public class Arc
     {
         //private Vertex sVertex;
-        private Vertex eVertex;
-        TRANSFER_CHARACTER transfer_char = TRANSFER_CHARACTER.TRANSFER_CHARACTER_UNDEFINE;
+        public Vertex eVertex;
+        public TRANSFER_CHARACTER transfer_char = TRANSFER_CHARACTER.TRANSFER_CHARACTER_UNDEFINE;
 
         public Arc(Vertex eVertex, TRANSFER_CHARACTER transfer_char)
         {

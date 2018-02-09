@@ -14,6 +14,7 @@ namespace ConsoleApp1
             List<int> nodeList = new List<int>();
             //（1|2）|3|4|5|6|7|8|9*
             nodeList.Add((int)VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_LEFTBRACET);
+            nodeList.Add((int)VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_LEFTBRACET);
             nodeList.Add((int)'1');
             nodeList.Add((int)VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_HUO);
             nodeList.Add((int)'2');
@@ -22,11 +23,13 @@ namespace ConsoleApp1
             nodeList.Add((int)'3');
             nodeList.Add((int)VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_HUO);
             nodeList.Add((int)'4');
+            nodeList.Add((int)VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_RIGHTBRACET);
+            nodeList.Add((int)VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_BIBAO);
             nodeList.Add((int)VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_HUO);
             nodeList.Add((int)'5');
             nodeList.Add((int)VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_HUO);
             nodeList.Add((int)'6');
-            nodeList.Add((int)VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_HUO);
+            nodeList.Add((int)VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_LIANJIE);
             nodeList.Add((int)'7');
             nodeList.Add((int)VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_HUO);
             nodeList.Add((int)'8');
@@ -49,7 +52,16 @@ namespace ConsoleApp1
             re.PrintRE();
             Console.WriteLine("--------------------------------------------");
             FA fa = RE.GetNFA_(re.GetRoot());
-            int x = 4;
+            Console.WriteLine("--------------------------------------------");
+            for (int i = 0; i < fa.headVerList.Count; i++)
+            {
+                Console.Write(i + ": ");
+                for(int j = 0; j < fa.headVerList[i].arcList.Count; j++)
+                {
+                    Console.Write("(" + fa.headVerList.IndexOf(fa.headVerList[i].arcList[j].eVertex) + "," + fa.headVerList[i].arcList[j].transfer_char + ")");
+                }
+                Console.WriteLine();
+            }
         }
     }
 }

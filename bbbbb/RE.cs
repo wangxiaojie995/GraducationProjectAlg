@@ -57,14 +57,26 @@ namespace bbbbb
                     //结束符
                     if (node.GetValueTypeConcrete().Equals(VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_MINPOR))
                     {
-                        //结束字符
-                        Node topOneOpd = opdStack.Pop();
-                        Node topTwoOpd = opdStack.Pop();
-                        Node topOneOpr = oprStack.Pop();
-                        Node parentNode = new Node(topOneOpr.value, topOneOpd, topTwoOpd);
-                        opdStack.Push(parentNode);
+
+                        while (oprStack.Peek() != null)
+                        {
+                            Node oprTop = oprStack.Pop();
+                            if (
+                                oprTop.GetValueTypeConcrete().Equals(VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_HUO) ||
+                                oprTop.GetValueTypeConcrete().Equals(VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_LIANJIE)
+                                )
+                            {
+                                Node opdTop = opdStack.Pop();
+                                Node opdSec = opdStack.Pop();
+                                Node n = new Node(oprTop.value, opdTop, opdSec);
+                                opdStack.Push(n);
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
                         Node result = opdStack.Pop();
-                        //Node.PrintTree(result);
                         return result;
                     }
                     else if (node.GetValueTypeConcrete().Equals(VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_BIBAO))
