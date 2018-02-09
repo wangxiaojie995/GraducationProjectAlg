@@ -12,6 +12,7 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             List<int> nodeList = new List<int>();
+            //（1|2）|3|4|5|6|7|8|9*
             nodeList.Add((int)VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_LEFTBRACET);
             nodeList.Add((int)'1');
             nodeList.Add((int)VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_HUO);
@@ -41,11 +42,14 @@ namespace ConsoleApp1
             {
                 Console.Write(nodeList[i] + " ");
             }
-            Class1 class1 = new Class1();
+            RE re = new RE(nodeList);
             Console.WriteLine();
-            Console.WriteLine("****************树状结构是*****************");
-            Node root = class1.BuildRegExTree(nodeList);
-            Console.WriteLine(root == null);
+            Console.WriteLine("****************树状结构是***************");
+
+            re.PrintRE();
+            Console.WriteLine("--------------------------------------------");
+            FA fa = RE.GetNFA_(re.GetRoot());
+            int x = 4;
         }
     }
 }

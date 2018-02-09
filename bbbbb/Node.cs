@@ -98,24 +98,22 @@ namespace bbbbb
                 case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_MINPOR:
                     switch(node2.GetValueTypeConcrete())
                     {
-                        case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_MINPOR: return 0; break;
-                        case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_HUO: return -1; break;
-                        case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_LIANJIE: return -1; break;
-                        case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_BIBAO: return -1; break;
-                        case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_LEFTBRACET: return -1; break;
-                        //case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_RIGHTBRACET: return -1; break;
+                        case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_MINPOR: Console.WriteLine("0000000000"); return 0;
+                        case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_HUO: return -1;
+                        case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_LIANJIE: return -1;
+                        case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_BIBAO: return -1;
+                        case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_LEFTBRACET: return -1;
                     }
                     break;
 
                 case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_HUO:
                     switch (node2.GetValueTypeConcrete())
                     {
-                        case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_MINPOR:return 1; break;
-                        case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_HUO: return 1; break;
-                        case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_LIANJIE:return -1; break;
-                        case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_BIBAO:return -1; break;
-                        case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_LEFTBRACET: return -1; break;
-                        //case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_RIGHTBRACET: return -1; break;
+                        case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_MINPOR:return 1; 
+                        case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_HUO: return 1; 
+                        case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_LIANJIE:return -1; 
+                        case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_BIBAO:return -1; 
+                        case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_LEFTBRACET: return -1;
                     }
                     break;
 
