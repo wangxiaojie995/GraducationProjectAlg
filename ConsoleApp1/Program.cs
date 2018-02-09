@@ -12,9 +12,11 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             List<int> nodeList = new List<int>();
+            nodeList.Add((int)VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_LEFTBRACET);
             nodeList.Add((int)'1');
             nodeList.Add((int)VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_HUO);
             nodeList.Add((int)'2');
+            nodeList.Add((int)VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_RIGHTBRACET);
             nodeList.Add((int)VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_HUO);
             nodeList.Add((int)'3');
             nodeList.Add((int)VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_HUO);
@@ -43,7 +45,7 @@ namespace ConsoleApp1
             Console.WriteLine();
             Console.WriteLine("****************树状结构是*****************");
             Node root = class1.BuildRegExTree(nodeList);
-            //Node.PrintTree(root);
+            Console.WriteLine(root == null);
         }
     }
 }

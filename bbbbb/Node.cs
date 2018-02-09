@@ -71,7 +71,6 @@ namespace bbbbb
             }
             return VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_UNDEFINE;
         }
-        //public 
 
         public static void PrintTree(Node root, string str = "")
         {
@@ -91,9 +90,10 @@ namespace bbbbb
         /// <returns></returns>
         public static int ComparePri(Node node1, Node node2)
         {
-            if(node1.GetValueType() != VALUE_TYPE.VALUE_TYPE_OPERATOR)return -2;
-            if(node2.GetValueType() != VALUE_TYPE.VALUE_TYPE_OPERATOR)return -2;
-            switch(node1.GetValueTypeConcrete())
+            if(node1.GetValueType() != VALUE_TYPE.VALUE_TYPE_OPERATOR && node1.GetValueType() != VALUE_TYPE.VALUE_TYPE_BRACKET)return -2;
+            if(node2.GetValueType() != VALUE_TYPE.VALUE_TYPE_OPERATOR && node2.GetValueType() != VALUE_TYPE.VALUE_TYPE_BRACKET) return -2;
+            //Console.WriteLine("-------------");
+            switch (node1.GetValueTypeConcrete())
             {
                 case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_MINPOR:
                     switch(node2.GetValueTypeConcrete())
@@ -102,6 +102,8 @@ namespace bbbbb
                         case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_HUO: return -1; break;
                         case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_LIANJIE: return -1; break;
                         case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_BIBAO: return -1; break;
+                        case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_LEFTBRACET: return -1; break;
+                        //case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_RIGHTBRACET: return -1; break;
                     }
                     break;
 
@@ -112,6 +114,8 @@ namespace bbbbb
                         case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_HUO: return 1; break;
                         case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_LIANJIE:return -1; break;
                         case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_BIBAO:return -1; break;
+                        case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_LEFTBRACET: return -1; break;
+                        //case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_RIGHTBRACET: return -1; break;
                     }
                     break;
 
@@ -122,6 +126,7 @@ namespace bbbbb
                         case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_HUO:return 1; break;
                         case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_LIANJIE:return 1; break;
                         case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_BIBAO:return -1; break;
+                        case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_LEFTBRACET: return -1; break;
                     }
                     break;
 
@@ -132,12 +137,22 @@ namespace bbbbb
                         case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_HUO: return 1; break;
                         case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_LIANJIE:return 1; break;
                         case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_BIBAO: return 1; break;
+                        case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_LEFTBRACET: return -1; break;
+                    }
+                    break;
+                case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_LEFTBRACET:
+                    switch (node2.GetValueTypeConcrete())
+                    {
+                        case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_MINPOR: return -1; break;
+                        case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_HUO: return -1; break;
+                        case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_LIANJIE: return -1; break;
+                        case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_BIBAO: return -1; break;
+                        case VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_LEFTBRACET: return -1; break;
                     }
                     break;
             }
             return -2;
         }
-
     }
 
     public enum VALUE_TYPE
@@ -286,7 +301,6 @@ namespace bbbbb
         VALUE_TYPE_CONCRETE_LIANJIE = 130,
         VALUE_TYPE_CONCRETE_HUO = 131,
         VALUE_TYPE_CONCRETE_BIBAO = 132,
-
     }
 
 }

@@ -19,7 +19,7 @@ namespace bbbbb
             if (regEx == null || regEx.Count <= 0) return null;
             List<Node> nodeList = new List<Node>();
 
-            for(int i = 0; i < regEx.Count; i++)
+            for (int i = 0; i < regEx.Count; i++)
             {
                 Node nodeI = new Node(regEx[i]);
                 if (nodeI.GetValueType().Equals(VALUE_TYPE.VALUE_TYPE_UNDEFINE)) return null;
@@ -31,26 +31,18 @@ namespace bbbbb
             //将运算优先级最低的符号入栈
             oprStack.Push(new Node(-1));
 
-            for(int i = 0; i < nodeList.Count; i++)
+            for (int i = 0; i < nodeList.Count; i++)
             {
                 Node node = nodeList[i];
                 VALUE_TYPE nodeIType = nodeList[i].GetValueType();
-                if( nodeIType.Equals(VALUE_TYPE.VALUE_TYPE_ASCII) ||nodeIType.Equals(VALUE_TYPE.VALUE_TYPE_BRACKET) )
+                if (nodeIType.Equals(VALUE_TYPE.VALUE_TYPE_ASCII))
                 {
-                    //如果是右括号，那么将操作数栈顶数出栈，直到第一个左括号，再将操作数与符号栈的第一个符号做运算
-                    //如果是非括号的操作数，直接进栈
-                    if (node.GetValueTypeConcrete().Equals(VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_RIGHTBRACET))
-                    {
-
-                    }
-                    else
-                    {
-                        opdStack.Push(node);
-                    }
-                }else if(nodeIType.Equals(VALUE_TYPE.VALUE_TYPE_OPERATOR))
+                    opdStack.Push(node);
+                }
+                else if (nodeIType.Equals(VALUE_TYPE.VALUE_TYPE_OPERATOR) || nodeIType.Equals(VALUE_TYPE.VALUE_TYPE_BRACKET))
                 {
                     //结束符
-                    if(node.GetValueTypeConcrete().Equals(VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_MINPOR))
+                    if (node.GetValueTypeConcrete().Equals(VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_MINPOR))
                     {
                         //结束字符
                         Node topOneOpd = opdStack.Pop();
@@ -68,6 +60,32 @@ namespace bbbbb
                         Node parentNode = new Node(node.value, topOneOpd, null);
                         opdStack.Push(parentNode);
                     }
+                    else if (node.GetValueTypeConcrete().Equals(VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_LEFTBRACET))
+                    {
+                        oprStack.Push(node);
+                    }
+                    else if (node.GetValueTypeConcrete().Equals(VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_RIGHTBRACET))
+                    {
+                        //右括号
+                        while (oprStack.Peek() != null)
+                        {
+                            Node oprTop = oprStack.Pop();
+                            if (
+                                oprTop.GetValueTypeConcrete().Equals(VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_HUO) ||
+                                oprTop.GetValueTypeConcrete().Equals(VALUE_TYPE_CONCRETE.VALUE_TYPE_CONCRETE_LIANJIE)
+                                )
+                            {
+                                Node opdTop = opdStack.Pop();
+                                Node opdSec = opdStack.Pop();
+                                Node n = new Node(oprTop.value, opdTop, opdSec);
+                                opdStack.Push(n);
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
                     else
                     {
                         Node top = oprStack.Peek();
@@ -76,6 +94,8 @@ namespace bbbbb
                             int priResult = Node.ComparePri(top, node);
                             if (priResult == -2)
                             {
+                                Console.WriteLine("比较优先级出现错误");
+                                return null;
                                 //比较优先级发生错误
                             }
                             else if (priResult == -1)
