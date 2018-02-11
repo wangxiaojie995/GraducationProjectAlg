@@ -154,11 +154,12 @@ namespace bbbbb
         {
             Node.PrintTree(root);
         }
-        public static FA GetNFA_(Node node)
+        public static NFA GetNFA_(Node node)
         {
             Dictionary<Node, FA> dic = new Dictionary<Node, FA>();
             GetNFA(node, dic);
-            return dic[node];
+            NFA nfa = new NFA(dic[node]);
+            return nfa;
         }
 
         //后序遍历生成NFA

@@ -51,14 +51,14 @@ namespace ConsoleApp1
 
             re.PrintRE();
             Console.WriteLine("--------------------------------------------");
-            FA fa = RE.GetNFA_(re.GetRoot());
+            NFA nfa = RE.GetNFA_(re.GetRoot());
             Console.WriteLine("--------------------------------------------");
-            for (int i = 0; i < fa.headVerList.Count; i++)
+            for (int i = 0; i < nfa.fa.headVerList.Count; i++)
             {
                 Console.Write(i + ": ");
-                for(int j = 0; j < fa.headVerList[i].arcList.Count; j++)
+                for(int j = 0; j < nfa.fa.headVerList[i].arcList.Count; j++)
                 {
-                    Console.Write("(" + fa.headVerList.IndexOf(fa.headVerList[i].arcList[j].eVertex) + "," + fa.headVerList[i].arcList[j].transfer_char + ")");
+                    Console.Write("(" + nfa.fa.headVerList.IndexOf(nfa.fa.headVerList[i].arcList[j].eVertex) + "," + nfa.fa.headVerList[i].arcList[j].transfer_char + ")");
                 }
                 Console.WriteLine();
             }

@@ -9,17 +9,172 @@ namespace bbbbb
 {
     public class NFA
     {
-        private FA fa;
+        public FA fa;
+
+        public NFA(FA fa)
+        {
+            this.fa = fa;
+        }
+
+
+        /// <summary>
+        /// 使用子集法求NFA对应的DFA
+        /// </summary>
+        /// <returns>NFA所对应的DFA</returns>
+        public DFA GetDFA()
+        {
+            List<TRANSFER_CHARACTER> A = new List<TRANSFER_CHARACTER>();
+            for(int i = 0; i < fa.headVerList.Count; i++)
+            {
+                for(int j = 0; j < fa.headVerList[i].arcList.Count; j++)
+                {
+                    if(!A.Contains(fa.headVerList[i].arcList[j].transfer_char))
+                    {
+                        if(!fa.headVerList[i].arcList[j].transfer_char.Equals(TRANSFER_CHARACTER.TRANSFER_CHARACTER_EPSILON))
+                        {
+                            A.Add(fa.headVerList[i].arcList[j].transfer_char);
+                        }
+                    }
+                }
+            }
+
+            List<T> tList = new List<T>();
+            List<int> list = new List<int>();
+            list.Add(this.fa.headVerList.IndexOf(this.fa.startVertex));
+            tList.Add(GetEplisonClosure(list));
+            while(true)
+            {
+
+                for(int i = 0; i < tList.Count; i++)
+                {
+                    if(tList[i].isBiaoJi == false)
+                    {
+
+
+                        break;
+                    }
+                }
+            }
+
+
+        }
+        
+
+        public T GetMove(List<int> list, TRANSFER_CHARACTER transfer_character)
+        {
+            T t = new T();
+            if (list == null) return null;
+            List<int> result = new List<int>();
+            for (int i = 0; i < list.Count; i++)
+            {
+                int item = list[i];
+                for (int j = 0; j < this.fa.headVerList[item].arcList.Count; j++)
+                {
+                    if(this.fa.headVerList[item].arcList[j].transfer_char.Equals(transfer_character))
+                    {
+                        int temp = this.fa.headVerList.IndexOf(this.fa.headVerList[item].arcList[j].eVertex);
+                        if(!result.Contains(temp))
+                        {
+                            result.Add(temp);
+                        }
+                    }
+                }
+            }
+            t.SetIntList(list);
+            return t;
+        }
+
+        public T GetEplisonClosure(List<int> list)
+        {
+            T t = new T();
+            if (list == null) return null;
+            List<int> result = new List<int>();
+            for(int i = 0; i < list.Count; i++)
+            {
+                Queue<int> queue = new Queue<int>();
+                queue.Enqueue(list[i]);
+                while(queue.Count!=0)
+                {
+                    int item = queue.Dequeue();
+                    if(!result.Contains(item))
+                    {
+                        result.Add(item);
+                    }
+                    for(int j = 0; j < this.fa.headVerList[item].arcList.Count; j++)
+                    {
+                        if(this.fa.headVerList[item].arcList[j].transfer_char.Equals(TRANSFER_CHARACTER.TRANSFER_CHARACTER_EPSILON))
+                        {
+                            int temp = this.fa.headVerList.IndexOf(this.fa.headVerList[item].arcList[j].eVertex);
+                            queue.Enqueue(temp);
+                        }
+                    }
+                }
+            }
+            t.SetIntList(result);
+            return t;
+        }
+
+
     }
+
+    public class T
+    {
+        public bool isBiaoJi = false;
+        private List<int> intList = new List<int>();
+        public List<int> GetIntList()
+        {
+            return intList;
+        }
+        public void SetIntList(List<int> list)
+        {
+            this.intList = list;
+        }
+        public override bool Equals(object obj)
+        {
+            T t = (T)obj;
+            if (t.GetIntList().Count != this.intList.Count) return false;
+            for(int i = 0; i < this.intList.Count; i++)
+            {
+                if (!t.intList.Contains(this.intList[i]))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        public bool AddItem(int i)
+        {
+            if(intList.Contains(i))
+            {
+                return false;
+            }
+            else
+            {
+                intList.Add(i);
+                return false;
+            }
+        }
+    }
+
 
     public class DFA
     {
-        private FA fa;
+        public FA fa;
+
+        public DFA(FA fa)
+        {
+            this.fa = fa;
+        }
     }
 
     public class SDFA
     {
-        private FA fa;
+        public FA fa;
+
+        public SDFA(FA fa)
+        {
+            this.fa = fa;
+        }
     }
 
     /// <summary>
